@@ -17,9 +17,16 @@ public class AscSort {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr.length; j++) {
 				if (arr[i]<arr[j]) {
-					temp = arr[i]; //스왑정렬
+					System.out.println("i="+i+", j="+j);
+					temp = arr[i];
+					System.out.println("첫번째 스왑(temp=arr[i] : arr["+i+"]="+arr[i]+", temp = "+temp);//스왑정렬 
 					arr[i] = arr[j];
+					System.out.println("두번째 스왑(arr[i]=arr[j] : arr["+i+"]="+arr[i]+", arr["+j+"]="+arr[j]);
 					arr[j] = temp;
+					System.out.print("세번째 스왑 arr[j]= temp : "+"\n arr["+i+"]="+arr[i]+", arr["+j+"]="+arr[j]+"\n");
+				}
+				else {
+					System.out.print("i="+i+", j="+j+"\n arr["+i+"]="+arr[i]+", arr["+j+"]="+arr[j]+"\n");
 				}
 			}
 		}

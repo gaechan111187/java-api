@@ -1,9 +1,10 @@
 package grade;
 
-import java.util.Vector;
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class GradeServiceImpl implements GradeService {
-	Vector<Grade> vec = new Vector<Grade>();
+	ArrayList<Grade> vec = new ArrayList<Grade>();
 
 	/**
 	 * 학생을 성적부로 등록하기 힌트)벡터 메소드 중에 한 객체만 넣는 메소드를 사용하세요. = 연산자는 안됨. 한줄 코딩으로 끝
@@ -25,7 +26,7 @@ public class GradeServiceImpl implements GradeService {
 	 * 할당하자.
 	 */
 	@Override
-	public Vector<Grade> getList() {
+	public ArrayList<Grade> getList() {
 		return vec;
 	}
 
@@ -37,8 +38,11 @@ public class GradeServiceImpl implements GradeService {
 		Grade grade = new Grade();
 		for (int i = 0; i < vec.size(); i++) { // 1000 대신에 벡터의 length 를 구하는 메소드를
 												// 찾아 볼것.
-			if (vec.elementAt(i).getHak().equals(hak)) {
-				grade = vec.elementAt(i);
+			if (vec.get(i).getHak().equals(hak)) {
+				grade = vec.get(i);
+				break;
+			} else {
+				grade = null;
 			}
 		}
 		return grade;
@@ -48,43 +52,59 @@ public class GradeServiceImpl implements GradeService {
 	 * 이름으로 성적부에 등록된 학생정보 전부 가져오기(동명이인일 경우 전부 검색)
 	 */
 	@Override
-	public Vector<Grade> SearchByName(String name) {
-		Vector<Grade> temp = new Vector<Grade>();
+	public ArrayList<Grade> SearchByName(String name) {
+		ArrayList<Grade> temp = new ArrayList<Grade>();
 		for (int i = 0; i < vec.size(); i++) {
-			if (vec.elementAt(i).getName().equals(name)) {
-				temp.add(vec.elementAt(i));
+			if (vec.get(i).getName().equals(name)) {
+				temp.add(vec.get(i));
 			}
 		}
 		return temp;
 	}
 
 	@Override
-	public void descGradeByTotal() {
-		Grade grade = new Grade();
+	public ArrayList<Grade> descGradeByTotal() {
 		Grade comp = null;
 		for (int i = 0; i < vec.size(); i++) {
 			for (int j = 0; j < vec.size(); j++) {
-				if (vec.elementAt(i).getTotal() > vec.elementAt(j).getTotal()) {
-					comp = vec.elementAt(i);
-					vec.set(i, vec.elementAt(j));
-					vec.set(j, comp);
-				}
-		}
-		}
-	}
-
-	@Override
-	public void ascGradeByName() {
-		Grade grade = new Grade();
-		Grade comp = null;
-		for (int i = 0; i < vec.size(); i++) {
-			for (int j = 0; j < vec.size(); j++) {
-				if ((vec.elementAt(i).getName().compareTo(vec.elementAt(j).getName()) < 0)) {
-					comp = vec.elementAt(i);
-					vec.set(i, vec.elementAt(j));
+				if (vec.get(i).getTotal() > vec.get(j).getTotal()) {
+					comp = vec.get(i);
+					vec.set(i, vec.get(j));
 					vec.set(j, comp);
 				}
 			}
 		}
+		return vec;
+	}
+
+	@Override
+	public ArrayList<Grade> ascGradeByName() {
+		Grade comp = null;
+		for (int i = 0; i < vec.size(); i++) {
+			for (int j = 0; j < vec.size(); j++) {
+				if ((vec.get(i).getName().compareTo(vec.get(j).getName()) < 0)) {
+					comp = vec.get(i);
+					vec.set(i, vec.get(j));
+					vec.set(j, comp);
+				}
+			}
+		}
+		return vec;
+	}
+
+	public void dscGrade() {
+		DscTotal grd = new DscTotal();
+		Collections.sort(vec, grd);
+	}
+
+	public void ascName() {
+		AscName na = new AscName();
+		Collections.sort(vec, na);
+	}
+
+	@Override
+	public void ascGrade() {
+		// TODO Auto-generated method stub
+
 	}
 }
