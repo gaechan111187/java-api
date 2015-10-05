@@ -15,6 +15,8 @@ public interface MemberService {
 	//아이디검색
 	public Member searchById(String id);
 	
+	public String change(String id, String pass, String newPass);
 	
+	public String close(String id, String pass);
 
 }
