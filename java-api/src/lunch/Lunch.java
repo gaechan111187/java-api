@@ -1,7 +1,8 @@
 package lunch;
 
 public class Lunch {
-	private String menu1, menu2, menu3, menu4, menu5, menu6;
+	protected String menu1, menu2, menu3, menu4, menu5, menu6;
+	protected int random = (int) (Math.random() * 6 + 1);
 
 	public String getMenu1() {
 		return menu1;
@@ -49,5 +50,19 @@ public class Lunch {
 
 	public void setMenu6(String menu6) {
 		this.menu6 = menu6;
+	}
+
+	public int getRandom() {
+		return random;
+	}
+
+	public void setRandom(int random) {
+		this.random = random;
+	}
+
+	@Override
+	public String toString() {
+		return "Lunch [메뉴1=" + menu1 + ", 메뉴2=" + menu2 + ", 메뉴3=" + menu3 + ", 메뉴4=" + menu4 + ", 메뉴5=" + menu5
+				+ ", 메뉴6=" + menu6 + "]";
 	}
 }

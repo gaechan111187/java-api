@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * @story     : 점심메뉴고르기
  */
 public interface LunchChoice {
-	public ArrayList<Lunch> getList();
+	public ArrayList<Lunch> getList(); // 메뉴 전체 리스트 가져오기
+	public String random(); // 메뉴 랜덤매칭
+	
 
 }
